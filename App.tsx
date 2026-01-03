@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { Hero } from './components/Hero';
 import { Acknowledgment } from './components/Acknowledgment';
 import { Responsibility } from './components/Responsibility';
+import { TheBeginning } from './components/TheBeginning';
 import { DeepReflections } from './components/DeepReflections';
 import { RespectSpace } from './components/RespectSpace';
 import { Quotes } from './components/Quotes';
@@ -30,6 +31,7 @@ function App() {
       <Hero />
       <Acknowledgment />
       <Responsibility />
+      <TheBeginning />
       <DeepReflections />
       <RespectSpace />
       <Quotes />
