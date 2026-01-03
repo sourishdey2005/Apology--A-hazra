@@ -32,35 +32,35 @@ export const Acknowledgment: React.FC = () => {
     offset: ["start end", "end start"]
   });
 
-  const yImg = useTransform(scrollYProgress, [0, 1], [-80, 80]);
-  const opacityImg = useTransform(scrollYProgress, [0, 0.5, 1], [0.4, 1, 0.4]);
+  const yImg = useTransform(scrollYProgress, [0, 1], [-40, 40]);
+  const opacityImg = useTransform(scrollYProgress, [0, 0.4, 0.6, 1], [0.6, 1, 1, 0.6]);
   
   const blurImg = useTransform(
     scrollYProgress,
-    [0, 0.3, 0.5, 0.7, 1],
-    ["blur(10px)", "blur(2px)", "blur(0px)", "blur(2px)", "blur(10px)"]
+    [0, 0.3, 0.7, 1],
+    ["blur(10px)", "blur(0px)", "blur(0px)", "blur(10px)"]
   );
 
   return (
-    <section ref={containerRef} className="relative min-h-screen py-32 md:py-48 bg-[#FAF9F6] px-6 md:px-12 lg:px-24 overflow-hidden">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-32 items-center">
+    <section ref={containerRef} className="relative min-h-screen py-24 md:py-40 bg-[#FAF9F6] px-6 md:px-12 lg:px-24 overflow-hidden">
+      <div className="max-w-4xl mx-auto flex flex-col items-center">
         
-        {/* Text Content */}
-        <div className="space-y-12 lg:pr-8">
+        {/* Text Content - Positioned Above */}
+        <div className="w-full text-center space-y-10 mb-20 md:mb-24">
           <motion.div 
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1.5 }}
-            className="space-y-4"
+            className="flex flex-col items-center space-y-4"
           >
-            <span className="text-[10px] uppercase tracking-[0.6em] text-rose-400 font-bold block mb-4">
+            <span className="text-[10px] uppercase tracking-[0.6em] text-rose-400 font-bold block">
               An honest reflection
             </span>
             <div className="w-12 h-[1px] bg-rose-200" />
           </motion.div>
 
-          <div className="space-y-10">
+          <div className="space-y-4 md:space-y-6">
             {[
               "I may not fully understand everything I did wrong,",
               "but I understand that I may have hurt you —",
@@ -68,7 +68,7 @@ export const Acknowledgment: React.FC = () => {
             ].map((line, index) => (
               <p
                 key={index}
-                className="text-2xl md:text-3xl lg:text-4xl text-[#1a1a1a] font-serif italic font-light leading-[1.4]"
+                className="text-lg md:text-xl lg:text-2xl text-[#1a1a1a] font-serif italic font-light leading-relaxed px-4"
               >
                 <TypewriterText text={line} delay={index * 0.8 + 0.5} />
               </p>
@@ -77,24 +77,24 @@ export const Acknowledgment: React.FC = () => {
           
           <motion.div
             initial={{ opacity: 0 }}
-            whileInView={{ opacity: 0.4 }}
+            whileInView={{ opacity: 0.5 }}
             viewport={{ once: true }}
             transition={{ delay: 3, duration: 2 }}
-            className="pt-4"
+            className="pt-6 inline-block"
           >
-            <div className="text-[9px] uppercase tracking-[0.4em] text-stone-400 italic font-medium">
+            <div className="text-[9px] uppercase tracking-[0.5em] text-stone-400 italic font-bold border-t border-stone-100 pt-4 px-8">
               Acknowledge. Understand. Respect.
             </div>
           </motion.div>
         </div>
 
-        {/* Image Content */}
+        {/* Image Content - Positioned Below */}
         <motion.div 
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0, scale: 0.98, y: 20 }}
+          whileInView={{ opacity: 1, scale: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 2, ease: [0.22, 1, 0.36, 1] }}
-          className="relative h-[450px] md:h-[650px] rounded-[2.5rem] overflow-hidden shadow-[0_40px_100px_-30px_rgba(0,0,0,0.1)] order-first lg:order-last"
+          transition={{ duration: 2.5, ease: [0.22, 1, 0.36, 1] }}
+          className="relative w-full h-[400px] md:h-[550px] rounded-[3rem] overflow-hidden shadow-[0_30px_80px_-20px_rgba(0,0,0,0.08)]"
         >
           <motion.div 
             style={{ 
@@ -103,12 +103,11 @@ export const Acknowledgment: React.FC = () => {
               filter: blurImg,
               backgroundImage: 'url("https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&q=80&w=1200")'
             }}
-            className="absolute inset-0 bg-cover bg-center"
+            className="absolute inset-0 bg-cover bg-center scale-110"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-40" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent opacity-30" />
           
-          {/* Subtle Frame Decoration */}
-          <div className="absolute inset-8 border border-white/20 rounded-[1.5rem] pointer-events-none" />
+          <div className="absolute inset-6 md:inset-10 border border-white/30 rounded-[2rem] pointer-events-none" />
         </motion.div>
 
       </div>
