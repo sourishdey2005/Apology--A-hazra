@@ -100,7 +100,7 @@ export const Closing: React.FC = () => {
         ))}
       </motion.div>
 
-      <div className="max-w-3xl text-center space-y-16 relative z-10">
+      <div className="max-w-5xl text-center space-y-16 relative z-10 w-full">
         <div className="space-y-10">
           <div className="space-y-4">
             <motion.p 
@@ -111,21 +111,21 @@ export const Closing: React.FC = () => {
             >
               <TypewriterText text="Final thoughts" />
             </motion.p>
-            <p className="text-indigo-50 text-2xl md:text-3xl font-light tracking-wide leading-relaxed px-4">
+            <p className="text-indigo-50 text-xl md:text-2xl font-light tracking-wide leading-relaxed px-4">
               <TypewriterText text="Wherever life takes you, I hope it treats you kindly." delay={1} />
             </p>
           </div>
           
-          <div className="relative inline-block px-4">
-            <h2 className="text-3xl md:text-6xl font-serif italic text-white leading-tight font-light">
-              <TypewriterText text="And if this apology ever reaches your heart —" delay={2.5} /> <br />
-              <TypewriterText text="that’s enough for me." delay={4.5} />
+          <div className="relative inline-block px-4 w-full">
+            <h2 className="text-2xl md:text-4xl lg:text-5xl font-serif italic text-white leading-tight font-light whitespace-normal md:whitespace-nowrap">
+              <TypewriterText text="And if this apology ever reaches your heart — " delay={2.5} />
+              <TypewriterText text="that’s enough for me." delay={4.8} />
             </h2>
             <motion.div 
-              className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-32 h-[1px] bg-gradient-to-r from-transparent via-rose-300/40 to-transparent"
+              className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-48 h-[1px] bg-gradient-to-r from-transparent via-rose-300/40 to-transparent"
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
-              transition={{ delay: 6, duration: 3 }}
+              transition={{ delay: 6.5, duration: 3 }}
             />
           </div>
         </div>

@@ -7,7 +7,11 @@ import { DeepReflections } from './components/DeepReflections';
 import { RespectSpace } from './components/RespectSpace';
 import { Quotes } from './components/Quotes';
 import { Closing } from './components/Closing';
+import { HeartfeltLove } from './components/HeartfeltLove';
 import { Footer } from './components/Footer';
+import { MusicPlayer } from './components/MusicPlayer';
+import { GrainOverlay } from './components/GrainOverlay';
+import { CustomCursor } from './components/CustomCursor';
 
 function App() {
   // Smooth scroll behavior
@@ -19,14 +23,19 @@ function App() {
   }, []);
 
   return (
-    <main className="relative min-h-screen selection:bg-rose-100 selection:text-rose-900 bg-[#FAF9F6]">
+    <main className="relative min-h-screen selection:bg-rose-100 selection:text-rose-900 bg-[#FAF9F6] cursor-none">
+      <GrainOverlay />
+      <CustomCursor />
+      <MusicPlayer />
       <Hero />
       <Acknowledgment />
       <Responsibility />
       <DeepReflections />
       <RespectSpace />
       <Quotes />
+      <div className="h-96 bg-gradient-to-b from-[#FAF9F6] to-[#0C0D18]" />
       <Closing />
+      <HeartfeltLove />
       <Footer />
     </main>
   );

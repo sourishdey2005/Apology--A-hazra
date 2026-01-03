@@ -1,0 +1,49 @@
+
+import React, { useEffect, useState } from 'react';
+import { motion, useSpring } from 'framer-motion';
+
+export const CustomCursor: React.FC = () => {
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [isHovering, setIsHovering] = useState(false);
+
+  const springConfig = { damping: 25, stiffness: 120 };
+  const cursorX = useSpring(0, springConfig);
+  const cursorY = useSpring(0, springConfig);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePos({ x: e.clientX, y: e.clientY });
+      cursorX.set(e.clientX - 16);
+      cursorY.set(e.clientY - 16);
+    };
+
+    const handleHover = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (['BUTTON', 'A', 'BLOCKQUOTE', 'IMG'].includes(target.tagName) || target.closest('button')) {
+        setIsHovering(true);
+      } else {
+        setIsHovering(false);
+      }
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mouseover', handleHover);
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mouseover', handleHover);
+    };
+  }, [cursorX, cursorY]);
+
+  return (
+    <motion.div
+      className="fixed top-0 left-0 w-8 h-8 rounded-full border border-rose-300/40 pointer-events-none z-[10000] mix-blend-difference hidden md:block"
+      style={{
+        x: cursorX,
+        y: cursorY,
+        scale: isHovering ? 2.5 : 1,
+        backgroundColor: isHovering ? 'rgba(244, 114, 182, 0.1)' : 'transparent',
+      }}
+      transition={{ scale: { type: 'spring', ...springConfig } }}
+    />
+  );
+};

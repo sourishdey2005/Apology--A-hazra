@@ -26,7 +26,7 @@ const TypewriterText = ({ text, delay = 0 }: { text: string; delay?: number }) =
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="bg-[#1A1B2E] py-20 px-6 flex flex-col items-center border-t border-indigo-900/20">
+    <footer className="bg-[#0C0D18] py-20 px-6 flex flex-col items-center border-t border-white/[0.05]">
       <div className="text-center space-y-2 opacity-40">
         <p className="text-xs text-indigo-200 tracking-[0.2em] font-light uppercase">
           <TypewriterText text="Written with honesty." />
