@@ -79,17 +79,17 @@ const TypewriterBlock = ({ text, colorClass }: { text: string; colorClass: strin
   const letters = Array.from(text);
   
   return (
-    <motion.p className={`text-xl md:text-3xl font-serif italic font-light leading-relaxed max-w-2xl ${colorClass} relative z-10 flex flex-wrap`}>
+    <motion.p className={`text-xl md:text-2xl lg:text-3xl font-serif italic font-light leading-relaxed max-w-2xl ${colorClass} relative z-10 flex flex-wrap gap-y-1`}>
       {letters.map((char, i) => (
         <motion.span
           key={i}
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
+          initial={{ opacity: 0, filter: 'blur(4px)' }}
+          whileInView={{ opacity: 1, filter: 'blur(0px)' }}
+          viewport={{ once: true, margin: "-5% 0px -5% 0px" }}
           transition={{
-            duration: 0.3,
-            delay: i * 0.02,
-            ease: "easeIn"
+            duration: 0.8,
+            delay: i * 0.015,
+            ease: "easeOut"
           }}
         >
           {char === " " ? "\u00A0" : char}
@@ -102,76 +102,82 @@ const TypewriterBlock = ({ text, colorClass }: { text: string; colorClass: strin
 export const DeepReflections: React.FC = () => {
   return (
     <section className="relative bg-[#FAF9F6] w-full">
-      <div className="py-24 text-center">
+      <div className="py-32 text-center">
         <motion.h3 
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 10, letterSpacing: "1.5em" }}
+          whileInView={{ opacity: 0.6, y: 0, letterSpacing: "1em" }}
           viewport={{ once: true }}
-          className="text-xs uppercase tracking-[1em] text-stone-400 font-medium"
+          transition={{ duration: 2.5 }}
+          className="text-[10px] uppercase text-stone-400 font-bold"
         >
           A sequence of truth
         </motion.h3>
-        <div className="w-px h-12 bg-stone-200 mx-auto mt-8" />
+        <div className="w-px h-16 bg-gradient-to-b from-stone-200 to-transparent mx-auto mt-10" />
       </div>
 
       <div className="flex flex-col w-full">
         {reflections.map((item, idx) => (
           <div 
             key={idx} 
-            className={`min-h-screen relative flex items-center justify-center p-6 py-32 md:py-48 ${item.color} overflow-hidden transition-colors duration-1000`}
+            className={`min-h-screen relative flex items-center justify-center p-6 py-40 md:py-64 ${item.color} overflow-hidden transition-colors duration-[2000ms]`}
           >
-            {/* Background Glows for Vibrant Feel */}
+            {/* Background Glows */}
             <motion.div 
-              initial={{ scale: 0.5, opacity: 0 }}
-              whileInView={{ scale: 1.8, opacity: 0.5 }}
-              viewport={{ margin: "-20%" }}
-              className={`absolute inset-0 rounded-full blur-[200px] pointer-events-none ${item.glow}`}
+              initial={{ scale: 0.6, opacity: 0 }}
+              whileInView={{ scale: 2, opacity: 0.4 }}
+              viewport={{ margin: "-10%" }}
+              transition={{ duration: 3.5, ease: [0.22, 1, 0.36, 1] }}
+              className={`absolute inset-0 rounded-full blur-[250px] pointer-events-none ${item.glow}`}
             />
             
-            <div className="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-32 items-center relative z-10">
+            <div className="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-20 lg:gap-32 items-center relative z-10">
               <motion.div
-                initial={{ opacity: 0, x: -40 }}
+                initial={{ opacity: 0, x: -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-10%" }}
-                transition={{ duration: 1.5, ease: "easeOut" }}
-                className="space-y-12 order-2 lg:order-1"
+                viewport={{ once: true, margin: "-15%" }}
+                transition={{ duration: 2, ease: [0.22, 1, 0.36, 1] }}
+                className="space-y-16 order-2 lg:order-1"
               >
-                <div className="flex items-center gap-8">
-                  <span className={`text-6xl md:text-9xl font-serif opacity-20 italic ${item.accent}`}>
+                <div className="flex items-center gap-10">
+                  <span className={`text-7xl md:text-9xl font-serif opacity-[0.15] italic ${item.accent}`}>
                     {idx + 1 < 10 ? `0${idx + 1}` : idx + 1}
                   </span>
                   <motion.div 
                     initial={{ scaleX: 0 }}
                     whileInView={{ scaleX: 1 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 1.5, delay: 0.5 }}
-                    className={`h-[2px] w-32 origin-left bg-current opacity-30 ${item.accent}`} 
+                    transition={{ duration: 2.5, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                    className={`h-[1px] w-40 origin-left bg-current opacity-20 ${item.accent}`} 
                   />
                 </div>
                 <TypewriterBlock text={item.text} colorClass={item.accent} />
               </motion.div>
 
               <motion.div
-                initial={{ opacity: 0, scale: 0.95, y: 30 }}
+                initial={{ opacity: 0, scale: 0.98, y: 40 }}
                 whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                viewport={{ once: true, margin: "-10%" }}
-                transition={{ duration: 2, ease: [0.16, 1, 0.3, 1] }}
-                className="relative h-[450px] md:h-[700px] w-full rounded-[3rem] overflow-hidden shadow-[0_40px_100px_-30px_rgba(0,0,0,0.2)] group order-1 lg:order-2"
+                viewport={{ once: true, margin: "-15%" }}
+                transition={{ duration: 2.5, ease: [0.22, 1, 0.36, 1] }}
+                className="relative h-[500px] md:h-[750px] w-full rounded-[4rem] overflow-hidden shadow-[0_60px_120px_-40px_rgba(0,0,0,0.15)] group order-1 lg:order-2"
               >
                 <motion.img 
                   src={item.img} 
                   alt={`Reflection ${idx + 1}`} 
                   loading="lazy"
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-[4000ms] ease-out group-hover:scale-110"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-[6000ms] ease-out group-hover:scale-[1.08]"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-60" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-40" />
                 
-                {/* Repositioned & Refined Folio Counter */}
-                <div className="absolute top-8 left-8 flex items-center gap-3 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/20">
-                  <span className="text-white/90 text-[10px] tracking-[0.4em] uppercase font-bold">Reflection</span>
-                  <div className="w-4 h-[1px] bg-white/40" />
-                  <span className="text-white/90 text-[10px] font-bold">{idx + 1} / {reflections.length}</span>
-                </div>
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1, duration: 1.5 }}
+                  className="absolute top-10 left-10 flex items-center gap-4 bg-white/5 backdrop-blur-xl px-5 py-2.5 rounded-full border border-white/20 shadow-sm"
+                >
+                  <span className="text-white/80 text-[10px] tracking-[0.4em] uppercase font-bold">Reflection</span>
+                  <div className="w-6 h-[1px] bg-white/20" />
+                  <span className="text-white/80 text-[10px] font-bold">{idx + 1} / {reflections.length}</span>
+                </motion.div>
               </motion.div>
             </div>
           </div>
@@ -179,8 +185,14 @@ export const DeepReflections: React.FC = () => {
       </div>
 
       {/* Decorative End Line */}
-      <div className="h-64 flex flex-col items-center justify-center bg-gradient-to-b from-transparent to-[#FAF9F6]">
-        <div className="w-px h-24 bg-gradient-to-b from-stone-300 to-transparent" />
+      <div className="h-96 flex flex-col items-center justify-center bg-gradient-to-b from-transparent to-[#FAF9F6]">
+        <motion.div 
+          initial={{ height: 0 }}
+          whileInView={{ height: 96 }}
+          viewport={{ once: true }}
+          transition={{ duration: 3, ease: [0.22, 1, 0.36, 1] }}
+          className="w-[1px] bg-gradient-to-b from-stone-300 to-transparent" 
+        />
       </div>
     </section>
   );
