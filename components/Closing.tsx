@@ -33,26 +33,22 @@ export const Closing: React.FC = () => {
 
   const yParticlesSlow = useTransform(scrollYProgress, [0, 1], [-50, 50]);
   const yParticlesFast = useTransform(scrollYProgress, [0, 1], [-150, 150]);
-  const moonY = useTransform(scrollYProgress, [0, 1], [60, -60]);
+  const moonY = useTransform(scrollYProgress, [0, 1], [100, -100]);
 
   return (
-    <section ref={sectionRef} className="relative min-h-screen bg-[#0C0D18] flex items-center justify-center px-6 overflow-hidden">
+    <section ref={sectionRef} className="relative min-h-screen bg-[#0C0D18] flex items-center justify-center px-4 md:px-12 overflow-hidden">
       {/* Deep Space Gradient Layer */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,#1A1B2E_0%,#0C0D18_100%)]" />
 
       {/* Layered Parallax Moon / Celestial Glows */}
       <motion.div 
         style={{ y: moonY }}
-        className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-indigo-500/5 rounded-full blur-[150px] pointer-events-none"
-      />
-      <motion.div 
-        style={{ y: moonY }}
-        className="absolute top-1/3 left-1/2 -translate-x-1/2 w-64 h-64 bg-white/[0.02] rounded-full blur-[60px] pointer-events-none"
+        className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[400px] md:w-[800px] h-[400px] md:h-[800px] bg-indigo-500/5 rounded-full blur-[100px] md:blur-[180px] pointer-events-none"
       />
 
-      {/* Background Star Layer (Slower Drift) */}
+      {/* Background Star Layer */}
       <motion.div style={{ y: yParticlesSlow }} className="absolute inset-0 pointer-events-none">
-        {[...Array(80)].map((_, i) => (
+        {[...Array(60)].map((_, i) => (
           <motion.div
             key={`slow-${i}`}
             className="absolute w-[1px] h-[1px] bg-white rounded-full"
@@ -61,37 +57,10 @@ export const Closing: React.FC = () => {
               top: Math.random() * 100 + "%" 
             }}
             animate={{
-              opacity: [0, Math.random() * 0.3 + 0.1, 0],
+              opacity: [0, Math.random() * 0.4 + 0.1, 0],
             }}
             transition={{
-              duration: Math.random() * 10 + 10, // Slower flicker
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: Math.random() * 15
-            }}
-          />
-        ))}
-      </motion.div>
-
-      {/* Foreground Particle Layer (Slightly more active) */}
-      <motion.div style={{ y: yParticlesFast }} className="absolute inset-0 pointer-events-none">
-        {[...Array(40)].map((_, i) => (
-          <motion.div
-            key={`fast-${i}`}
-            className={`absolute rounded-full ${i % 3 === 0 ? 'bg-indigo-200' : 'bg-white'}`}
-            style={{ 
-              width: Math.random() * 2 + 1 + "px",
-              height: Math.random() * 2 + 1 + "px",
-              left: Math.random() * 100 + "%", 
-              top: Math.random() * 100 + "%" 
-            }}
-            animate={{
-              opacity: [0, 0.4, 0],
-              scale: [0.5, 1, 0.5],
-              y: [0, -30, 0], // Subtle floating drift
-            }}
-            transition={{
-              duration: Math.random() * 8 + 12,
+              duration: Math.random() * 8 + 8,
               repeat: Infinity,
               ease: "easeInOut",
               delay: Math.random() * 10
@@ -100,39 +69,75 @@ export const Closing: React.FC = () => {
         ))}
       </motion.div>
 
-      <div className="max-w-5xl text-center space-y-16 relative z-10 w-full">
-        <div className="space-y-10">
-          <div className="space-y-4">
+      {/* Foreground Particle Layer */}
+      <motion.div style={{ y: yParticlesFast }} className="absolute inset-0 pointer-events-none">
+        {[...Array(30)].map((_, i) => (
+          <motion.div
+            key={`fast-${i}`}
+            className={`absolute rounded-full ${i % 3 === 0 ? 'bg-rose-200/40' : 'bg-white/40'}`}
+            style={{ 
+              width: Math.random() * 2 + 1 + "px",
+              height: Math.random() * 2 + 1 + "px",
+              left: Math.random() * 100 + "%", 
+              top: Math.random() * 100 + "%" 
+            }}
+            animate={{
+              opacity: [0, 0.5, 0],
+              y: [0, -40, 0],
+            }}
+            transition={{
+              duration: Math.random() * 6 + 6,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: Math.random() * 5
+            }}
+          />
+        ))}
+      </motion.div>
+
+      <div className="max-w-6xl w-full text-center space-y-20 relative z-10">
+        <div className="space-y-12">
+          <div className="space-y-6">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 0.4, scale: 1 }}
+              transition={{ duration: 2 }}
+              className="w-px h-16 bg-gradient-to-b from-transparent via-white to-transparent mx-auto"
+            />
             <motion.p 
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 2 }}
-              className="text-indigo-200/50 text-[10px] uppercase tracking-[0.8em] font-medium"
+              className="text-indigo-200/60 text-[10px] uppercase tracking-[1em] font-medium"
             >
               <TypewriterText text="Final thoughts" />
             </motion.p>
-            <p className="text-indigo-50 text-xl md:text-2xl font-light tracking-wide leading-relaxed px-4">
-              <TypewriterText text="Wherever life takes you, I hope it treats you kindly." delay={1} />
+            <p className="text-indigo-50/90 text-lg md:text-2xl font-light tracking-wide leading-relaxed max-w-2xl mx-auto">
+              <TypewriterText text="Wherever life takes you, I hope it treats you kindly." delay={1.2} />
             </p>
           </div>
           
-          <div className="relative inline-block px-4 w-full">
-            <h2 className="text-2xl md:text-4xl lg:text-5xl font-serif italic text-white leading-tight font-light whitespace-normal md:whitespace-nowrap">
-              <TypewriterText text="And if this apology ever reaches your heart — " delay={2.5} />
-              <TypewriterText text="that’s enough for me." delay={4.8} />
+          <div className="relative pt-10">
+            <h2 className="text-2xl md:text-4xl lg:text-5xl font-serif italic text-white leading-[1.4] font-light max-w-5xl mx-auto text-center px-4">
+              <TypewriterText 
+                text="And if this apology ever reaches your heart — that’s enough for me." 
+                delay={3.2} 
+              />
             </h2>
-            <motion.div 
-              className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-48 h-[1px] bg-gradient-to-r from-transparent via-rose-300/40 to-transparent"
-              initial={{ scaleX: 0 }}
-              whileInView={{ scaleX: 1 }}
-              transition={{ delay: 6.5, duration: 3 }}
-            />
+            <div className="mt-12 flex justify-center">
+              <motion.div 
+                className="w-32 md:w-64 h-[1px] bg-gradient-to-r from-transparent via-rose-300/30 to-transparent"
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                transition={{ delay: 7.5, duration: 4 }}
+              />
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Cinematic Vignette */}
-      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.6)_100%)]" />
+      {/* Subtle Cinematic Vignette */}
+      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.4)_100%)]" />
     </section>
   );
 };
