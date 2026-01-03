@@ -118,11 +118,19 @@ export const Closing: React.FC = () => {
           </div>
           
           <div className="relative pt-10">
-            <h2 className="text-2xl md:text-4xl lg:text-5xl font-serif italic text-white leading-[1.4] font-light max-w-5xl mx-auto text-center px-4">
-              <TypewriterText 
-                text="And if this apology ever reaches your heart — that’s enough for me." 
-                delay={3.2} 
-              />
+            <h2 className="text-2xl md:text-4xl lg:text-5xl font-serif italic text-white leading-[1.6] font-light max-w-5xl mx-auto text-center px-4 flex flex-col gap-2">
+              <span className="block">
+                <TypewriterText 
+                  text="And if this apology ever reaches your heart —" 
+                  delay={3.2} 
+                />
+              </span>
+              <span className="block">
+                <TypewriterText 
+                  text="that’s enough for me." 
+                  delay={5.5} 
+                />
+              </span>
             </h2>
             <div className="mt-12 flex justify-center">
               <motion.div 
