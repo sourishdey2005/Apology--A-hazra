@@ -1,19 +1,25 @@
 
 import React, { useEffect, useState } from 'react';
-import { motion, useSpring } from 'framer-motion';
+import { motion, useSpring, useMotionValue } from 'framer-motion';
 
 export const CustomCursor: React.FC = () => {
   const [isHovering, setIsHovering] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
-  // Softer spring configuration for a fluid, floating feel
-  const springConfigOuter = { damping: 30, stiffness: 100, mass: 0.8 };
-  const cursorX = useSpring(0, springConfigOuter);
-  const cursorY = useSpring(0, springConfigOuter);
+  // Raw motion values for instant tracking
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  // Very snappy spring for the outer ring
+  const springConfigOuter = { damping: 40, stiffness: 800, mass: 0.1 };
+  const cursorXSpring = useSpring(mouseX, springConfigOuter);
+  const cursorYSpring = useSpring(mouseY, springConfigOuter);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      cursorX.set(e.clientX - 16);
-      cursorY.set(e.clientY - 16);
+      if (!isVisible) setIsVisible(true);
+      mouseX.set(e.clientX);
+      mouseY.set(e.clientY);
     };
 
     const handleHover = (e: MouseEvent) => {
@@ -24,34 +30,46 @@ export const CustomCursor: React.FC = () => {
       setIsHovering(!!clickable);
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
+    const handleMouseLeave = () => setIsVisible(false);
+    const handleMouseEnter = () => setIsVisible(true);
+
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
     window.addEventListener('mouseover', handleHover);
+    document.addEventListener('mouseleave', handleMouseLeave);
+    document.addEventListener('mouseenter', handleMouseEnter);
+
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mouseover', handleHover);
+      document.removeEventListener('mouseleave', handleMouseLeave);
+      document.removeEventListener('mouseenter', handleMouseEnter);
     };
-  }, [cursorX, cursorY]);
+  }, [mouseX, mouseY, isVisible]);
+
+  if (!isVisible) return null;
 
   return (
     <>
+      {/* Outer Circle: Follows with a tiny, high-frequency spring for elegance */}
       <motion.div
-        className="fixed top-0 left-0 w-8 h-8 rounded-full border border-rose-300/30 pointer-events-none z-[10000] mix-blend-difference hidden md:block"
+        className="fixed top-0 left-0 w-8 h-8 rounded-full border border-rose-400/30 pointer-events-none z-[10000] hidden md:block"
         style={{
-          x: cursorX,
-          y: cursorY,
-          scale: isHovering ? 2.5 : 1,
-          backgroundColor: isHovering ? 'rgba(244, 114, 182, 0.08)' : 'transparent',
+          x: cursorXSpring,
+          y: cursorYSpring,
+          translateX: '-50%',
+          translateY: '-50%',
+          scale: isHovering ? 1.8 : 1,
+          backgroundColor: isHovering ? 'rgba(251, 113, 133, 0.08)' : 'transparent',
         }}
-        transition={{ scale: { type: 'spring', damping: 20, stiffness: 100 } }}
       />
-      {/* Dot cursor inside for precision */}
+      {/* Inner Dot: Follows mouse instantly to eliminate perceived lag */}
       <motion.div
-        className="fixed top-0 left-0 w-1.5 h-1.5 rounded-full bg-rose-400 pointer-events-none z-[10001] hidden md:block"
+        className="fixed top-0 left-0 w-1.5 h-1.5 rounded-full bg-rose-500 pointer-events-none z-[10001] hidden md:block"
         style={{
-          x: useSpring(cursorX, { damping: 40, stiffness: 300 }),
-          y: useSpring(cursorY, { damping: 40, stiffness: 300 }),
-          translateX: 12.25,
-          translateY: 12.25,
+          x: mouseX,
+          y: mouseY,
+          translateX: '-50%',
+          translateY: '-50%',
         }}
       />
     </>

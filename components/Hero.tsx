@@ -9,17 +9,16 @@ export const Hero: React.FC = () => {
   const subtext = "For whatever I did wrong — knowingly or unknowingly.";
   const { scrollY } = useScroll();
   
-  const yBg = useTransform(scrollY, [0, 1000], [0, 250]);
+  const yBg = useTransform(scrollY, [0, 1000], [0, 200]);
   const opacity = useTransform(scrollY, [0, 600], [1, 0]);
-  const scaleBg = useTransform(scrollY, [0, 1000], [1, 1.15]);
 
   const letterVariants = {
-    hidden: { opacity: 0, y: 30, filter: 'blur(15px)' },
+    hidden: { opacity: 0, y: 20, filter: 'blur(10px)' },
     visible: { 
       opacity: 1, 
       y: 0, 
       filter: 'blur(0px)',
-      transition: { duration: 2.5, ease: EASE }
+      transition: { duration: 1.8, ease: EASE }
     },
   };
 
@@ -27,22 +26,11 @@ export const Hero: React.FC = () => {
     <section className="relative h-screen flex flex-col items-center justify-center overflow-hidden bg-[#FAF9F6]">
       <motion.div 
         className="absolute inset-0 z-0 origin-center"
-        style={{ y: yBg, scale: scaleBg }}
+        style={{ y: yBg }}
       >
         <div 
-          className="absolute inset-0 bg-cover bg-center opacity-[0.2] saturate-[0.2]"
-          style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&q=80&w=2070")' }}
-        />
-        <motion.div 
-          className="absolute inset-0 z-0 opacity-20"
-          animate={{
-            background: [
-              "radial-gradient(circle at 30% 30%, #FDF2F2 0%, transparent 60%)",
-              "radial-gradient(circle at 70% 70%, #F5E8E8 0%, transparent 60%)",
-              "radial-gradient(circle at 30% 30%, #FDF2F2 0%, transparent 60%)"
-            ]
-          }}
-          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute inset-0 bg-cover bg-center opacity-[0.15] saturate-[0.1]"
+          style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&q=auto&f_auto&w=1600")' }}
         />
       </motion.div>
 
@@ -52,7 +40,7 @@ export const Hero: React.FC = () => {
           initial="hidden"
           animate="visible"
           variants={{
-            visible: { transition: { staggerChildren: 0.12 } }
+            visible: { transition: { staggerChildren: 0.08 } }
           }}
         >
           {sentence.split("").map((char, index) => (
@@ -66,34 +54,28 @@ export const Hero: React.FC = () => {
         </motion.h1>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 2, delay: 1.8, ease: EASE }}
+          transition={{ duration: 1.5, delay: 1.2, ease: EASE }}
           className="space-y-10"
         >
           <p className="text-sm md:text-lg text-stone-400 font-light tracking-[0.3em] max-w-2xl mx-auto leading-relaxed text-center uppercase">
             {subtext}
           </p>
-          <motion.div 
-            initial={{ scaleX: 0 }}
-            animate={{ scaleX: 1 }}
-            transition={{ duration: 3.5, delay: 2.5, ease: EASE }}
-            className="w-12 h-[1px] bg-rose-200/60 mx-auto" 
-          />
+          <div className="w-10 h-[1px] bg-rose-200/40 mx-auto" />
         </motion.div>
       </motion.div>
 
       <motion.div 
         className="absolute bottom-16 left-1/2 -translate-x-1/2 flex flex-col items-center gap-6"
         initial={{ opacity: 0 }}
-        animate={{ opacity: 0.4 }}
-        transition={{ delay: 4, duration: 3 }}
+        animate={{ opacity: 0.3 }}
+        transition={{ delay: 2.5, duration: 2 }}
       >
-        <span className="text-[10px] uppercase tracking-[1em] text-stone-400 font-medium">Continue</span>
         <motion.div 
-          className="w-[1px] h-20 bg-gradient-to-b from-rose-200 to-transparent"
-          animate={{ height: [20, 40, 20], opacity: [0.3, 0.7, 0.3] }}
-          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+          className="w-[1px] h-12 bg-gradient-to-b from-rose-200 to-transparent"
+          animate={{ height: [12, 24, 12] }}
+          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
         />
       </motion.div>
     </section>
