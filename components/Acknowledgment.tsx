@@ -101,7 +101,7 @@ export const Acknowledgment: React.FC = () => {
               y: yImg, 
               opacity: opacityImg,
               filter: blurImg,
-              backgroundImage: 'url("https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&q=80&w=1200")'
+              backgroundImage: 'url("https://res.cloudinary.com/dodhvvewu/image/upload/v1768067845/20260110_164726_llyual.jpg")'
             }}
             className="absolute inset-0 bg-cover bg-center scale-110"
           />
