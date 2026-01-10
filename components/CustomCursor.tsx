@@ -6,72 +6,51 @@ export const CustomCursor: React.FC = () => {
   const [isHovering, setIsHovering] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
-  // Raw motion values for instant tracking
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
+  const mouseX = useMotionValue(-100);
+  const mouseY = useMotionValue(-100);
 
-  // Very snappy spring for the outer ring
-  const springConfigOuter = { damping: 40, stiffness: 800, mass: 0.1 };
-  const cursorXSpring = useSpring(mouseX, springConfigOuter);
-  const cursorYSpring = useSpring(mouseY, springConfigOuter);
+  // Simplified spring for maximum performance
+  const springConfig = { damping: 50, stiffness: 1000, mass: 0.05 };
+  const cursorX = useSpring(mouseX, springConfig);
+  const cursorY = useSpring(mouseY, springConfig);
 
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!isVisible) setIsVisible(true);
+    const moveMouse = (e: MouseEvent) => {
       mouseX.set(e.clientX);
       mouseY.set(e.clientY);
+      if (!isVisible) setIsVisible(true);
     };
 
     const handleHover = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      const clickable = ['BUTTON', 'A', 'BLOCKQUOTE', 'IMG'].includes(target.tagName) || 
-                        target.closest('button') || 
-                        target.closest('a');
-      setIsHovering(!!clickable);
+      setIsHovering(!!(target.closest('button') || target.closest('a') || target.tagName === 'BLOCKQUOTE'));
     };
 
-    const handleMouseLeave = () => setIsVisible(false);
-    const handleMouseEnter = () => setIsVisible(true);
-
-    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    window.addEventListener('mousemove', moveMouse, { passive: true });
     window.addEventListener('mouseover', handleHover);
-    document.addEventListener('mouseleave', handleMouseLeave);
-    document.addEventListener('mouseenter', handleMouseEnter);
+    document.addEventListener('mouseleave', () => setIsVisible(false));
+    document.addEventListener('mouseenter', () => setIsVisible(true));
 
     return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mousemove', moveMouse);
       window.removeEventListener('mouseover', handleHover);
-      document.removeEventListener('mouseleave', handleMouseLeave);
-      document.removeEventListener('mouseenter', handleMouseEnter);
     };
-  }, [mouseX, mouseY, isVisible]);
+  }, []);
 
   if (!isVisible) return null;
 
   return (
-    <>
-      {/* Outer Circle: Follows with a tiny, high-frequency spring for elegance */}
-      <motion.div
-        className="fixed top-0 left-0 w-8 h-8 rounded-full border border-rose-400/30 pointer-events-none z-[10000] hidden md:block"
-        style={{
-          x: cursorXSpring,
-          y: cursorYSpring,
-          translateX: '-50%',
-          translateY: '-50%',
-          scale: isHovering ? 1.8 : 1,
-          backgroundColor: isHovering ? 'rgba(251, 113, 133, 0.08)' : 'transparent',
-        }}
-      />
-      {/* Inner Dot: Follows mouse instantly to eliminate perceived lag */}
-      <motion.div
-        className="fixed top-0 left-0 w-1.5 h-1.5 rounded-full bg-rose-500 pointer-events-none z-[10001] hidden md:block"
-        style={{
-          x: mouseX,
-          y: mouseY,
-          translateX: '-50%',
-          translateY: '-50%',
-        }}
-      />
-    </>
+    <motion.div
+      className="fixed top-0 left-0 w-6 h-6 rounded-full border border-rose-400/40 pointer-events-none z-[10000] hidden md:block will-change-transform"
+      style={{
+        x: cursorX,
+        y: cursorY,
+        translateX: '-50%',
+        translateY: '-50%',
+        scale: isHovering ? 2 : 1,
+      }}
+    >
+      <div className="absolute inset-[40%] bg-rose-500 rounded-full" />
+    </motion.div>
   );
 };

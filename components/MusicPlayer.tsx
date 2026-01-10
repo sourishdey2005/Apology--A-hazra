@@ -8,44 +8,43 @@ export const MusicPlayer: React.FC = () => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
-    const attemptPlay = async () => {
-      if (audioRef.current) {
-        try {
-          // Attempt to play immediately
-          await audioRef.current.play();
-          setIsPlaying(true);
-        } catch (err) {
-          // If blocked, we wait for the first user interaction
-          console.log("Autoplay blocked. Waiting for user interaction to start music.");
-        }
+    const startAudio = () => {
+      if (audioRef.current && !isPlaying) {
+        audioRef.current.play()
+          .then(() => {
+            setIsPlaying(true);
+            // Clean up listeners once music starts
+            removeListeners();
+          })
+          .catch(() => {
+            // Still blocked, wait for next interaction
+          });
       }
     };
 
-    // Try on mount
-    attemptPlay();
-
-    // Fallback: play on first click or touch anywhere on the document
-    const handleFirstInteraction = () => {
-      if (!isPlaying) {
-        attemptPlay();
-      }
-      window.removeEventListener('click', handleFirstInteraction);
-      window.removeEventListener('touchstart', handleFirstInteraction);
-      window.removeEventListener('scroll', handleFirstInteraction);
+    const removeListeners = () => {
+      window.removeEventListener('click', startAudio);
+      window.removeEventListener('touchstart', startAudio);
+      window.removeEventListener('scroll', startAudio);
+      window.removeEventListener('mousemove', startAudio);
+      window.removeEventListener('keydown', startAudio);
     };
 
-    window.addEventListener('click', handleFirstInteraction);
-    window.addEventListener('touchstart', handleFirstInteraction);
-    window.addEventListener('scroll', handleFirstInteraction, { passive: true });
+    // Add comprehensive listeners for autoplay bypass
+    window.addEventListener('click', startAudio);
+    window.addEventListener('touchstart', startAudio);
+    window.addEventListener('scroll', startAudio, { passive: true });
+    window.addEventListener('mousemove', startAudio, { passive: true });
+    window.addEventListener('keydown', startAudio);
 
-    return () => {
-      window.removeEventListener('click', handleFirstInteraction);
-      window.removeEventListener('touchstart', handleFirstInteraction);
-      window.removeEventListener('scroll', handleFirstInteraction);
-    };
+    // Initial attempt
+    startAudio();
+
+    return () => removeListeners();
   }, [isPlaying]);
 
-  const toggleMusic = () => {
+  const toggleMusic = (e: React.MouseEvent) => {
+    e.stopPropagation();
     if (audioRef.current) {
       if (isPlaying) {
         audioRef.current.pause();
@@ -66,27 +65,26 @@ export const MusicPlayer: React.FC = () => {
       />
       <motion.button
         onClick={toggleMusic}
-        className="relative flex items-center justify-center w-12 h-12 rounded-full bg-white/20 backdrop-blur-xl border border-white/40 shadow-xl group overflow-hidden"
+        className="relative flex items-center justify-center w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 shadow-xl group overflow-hidden"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
-        aria-label={isPlaying ? "Mute Music" : "Play Music"}
       >
         <AnimatePresence mode="wait">
           {isPlaying ? (
             <motion.div
               key="playing"
-              initial={{ opacity: 0, rotate: -20 }}
-              animate={{ opacity: 1, rotate: 0 }}
-              exit={{ opacity: 0, rotate: 20 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
             >
               <Volume2 className="w-5 h-5 text-rose-400" />
             </motion.div>
           ) : (
             <motion.div
               key="muted"
-              initial={{ opacity: 0, rotate: -20 }}
-              animate={{ opacity: 1, rotate: 0 }}
-              exit={{ opacity: 0, rotate: 20 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
             >
               <VolumeX className="w-5 h-5 text-stone-400" />
             </motion.div>
@@ -95,20 +93,20 @@ export const MusicPlayer: React.FC = () => {
         
         {isPlaying && (
           <motion.div
-            className="absolute inset-0 border-2 border-rose-300/30 rounded-full"
-            animate={{ scale: [1, 1.5, 1], opacity: [0.5, 0, 0.5] }}
+            className="absolute inset-0 border-2 border-rose-300/20 rounded-full"
+            animate={{ scale: [1, 1.4, 1], opacity: [0.3, 0, 0.3] }}
             transition={{ duration: 3, repeat: Infinity }}
           />
         )}
       </motion.button>
       
-      <motion.span 
-        className="absolute right-16 top-1/2 -translate-y-1/2 whitespace-nowrap text-[10px] tracking-[0.3em] uppercase text-stone-400 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"
-        initial={{ x: 10 }}
-        whileHover={{ x: 0 }}
-      >
-        {isPlaying ? "Pehli Dafa - Atif Aslam" : "Ambient Silence"}
-      </motion.span>
+      <div className="absolute right-16 top-1/2 -translate-y-1/2 pointer-events-none">
+         <motion.span 
+          className="whitespace-nowrap text-[9px] tracking-[0.3em] uppercase text-stone-400 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+        >
+          {isPlaying ? "Pehli Dafa - Atif Aslam" : "Click to Play"}
+        </motion.span>
+      </div>
     </div>
   );
 };
