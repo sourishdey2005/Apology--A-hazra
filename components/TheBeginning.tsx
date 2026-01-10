@@ -55,24 +55,24 @@ export const TheBeginning: React.FC = () => {
             transition={{ duration: 3, ease: "easeOut" }}
             className="text-[11px] uppercase text-stone-500 font-bold tracking-[1.5em]"
           >
-            A Heart Still Waiting
+            The Heart that stayed behind
           </motion.h4>
         </div>
 
         <div className="space-y-32 text-center">
           <StoryParagraph 
-            text="The world turned its page and the calendar found a new year, but my heart is still folded at the chapter where we last spoke. Every morning since has felt like a beautiful book left out in the rain—waiting for the one hand that knows how to turn its pages." 
+            text="The world celebrated a new beginning, but my soul is still wandering through the corridors of our last conversation. Every 'Happy New Year' I heard felt like a hollow echo... because the only beginning I ever wanted was the warmth of your voice." 
             delay={0.2}
           />
 
           <StoryParagraph 
             highlighted
-            text="When the clock struck twelve and the sky was painting itself in gold, I wasn’t looking at the fireworks. I was looking for a single spark—your name, a 'Congratulations,' or just a 'Happy New Year' that would tell me the bridge was still there. The silence of that night was louder than any celebration."
+            text="When the clock struck twelve and the sky was painting itself in gold, I wasn’t looking at the fireworks. I was looking for a single spark—your name, a 'Congratulations,' or just a small whisper that the bridge was still there. That night, the silence was the coldest thing I've ever felt."
             delay={0.8}
           />
 
           <StoryParagraph 
-            text="I am still carrying the warmth of that sun-drenched afternoon at Laal Quila. I’m sorry for the winter I let grow between us. I’m staying right here, protecting the embers of our memories, until you’re ready to come back to the warmth."
+            text="I am still protecting the warmth of that sun-drenched afternoon at Laal Quila, keeping it safe from the winter of our distance. I’m staying right here, guarding the embers of us, until you’re ready to let the light back in."
             delay={1.4}
           />
         </div>
@@ -86,7 +86,7 @@ export const TheBeginning: React.FC = () => {
         >
           <div className="w-px h-20 bg-gradient-to-b from-stone-300 to-transparent" />
           <div className="text-[10px] uppercase tracking-[0.8em] text-stone-400 font-light italic">
-            Sincerely, forever
+            Forever, quietly, yours.
           </div>
         </motion.div>
       </div>

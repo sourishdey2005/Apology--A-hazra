@@ -35,12 +35,12 @@ export const TopVisual: React.FC = () => {
               transition={{ delay: 2, duration: 2 }}
               className="text-[11px] uppercase text-rose-200 font-bold block"
             >
-              A Poet's Reflection
+              A Heart's Quiet Whisper
             </motion.span>
             <h2 className="text-white font-serif italic text-4xl md:text-6xl lg:text-7xl font-light tracking-tight leading-[1.15]">
-              "I just wanted you to know... <br/> 
+              "I just wanted to whisper into the wind... <br/> 
               <span className="text-rose-200/90 italic">Yaar</span>, tell me, <br/> 
-              when did the music of our words stop?"
+              when did the music of our souls lose its voice?"
             </h2>
           </div>
           
@@ -51,8 +51,9 @@ export const TopVisual: React.FC = () => {
             className="flex flex-col items-center gap-6"
           >
             <div className="w-px h-16 bg-gradient-to-b from-white/40 to-transparent" />
-            <p className="text-stone-300 font-light italic text-xl md:text-2xl tracking-wide max-w-2xl mx-auto leading-relaxed">
-              I am still standing in the quiet of that December, waiting for a New Year that never arrived.
+            <p className="text-stone-300 font-light italic text-xl md:text-2xl tracking-wide max-w-3xl mx-auto leading-relaxed">
+              I am still standing in the tender, blue quiet of that last December... <br/>
+              holding my breath for a New Year that refuses to arrive without you.
             </p>
           </motion.div>
         </motion.div>
@@ -64,7 +65,7 @@ export const TopVisual: React.FC = () => {
         transition={{ delay: 5.5, duration: 2 }}
         className="absolute bottom-12 left-1/2 -translate-x-1/2"
       >
-        <span className="text-[9px] uppercase tracking-[1em] text-stone-500 font-bold">The Year I'm still waiting for</span>
+        <span className="text-[9px] uppercase tracking-[1em] text-stone-500 font-bold italic">Waiting for your sun to rise</span>
       </motion.div>
     </section>
   );
