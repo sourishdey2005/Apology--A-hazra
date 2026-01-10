@@ -10,70 +10,70 @@ const reflections = [
     color: "bg-orange-50/70",
     accent: "text-orange-950",
     glow: "bg-orange-300/10",
-    img: "https://res.cloudinary.com/dodhvvewu/image/upload/f_auto,q_auto,w_1000/v1767422362/9_flwn6i.webp"
+    img: "https://res.cloudinary.com/dodhvvewu/image/upload/v1768066790/IMG-20260110-WA0344_kllpxq.jpg"
   },
   {
     text: "I regret every moment my hesitation made you feel unseen.",
     color: "bg-rose-50/70",
     accent: "text-rose-950",
     glow: "bg-rose-300/10",
-    img: "https://res.cloudinary.com/dodhvvewu/image/upload/f_auto,q_auto,w_1000/v1767422361/7_ex2zz7.webp"
+    img: "https://res.cloudinary.com/dodhvvewu/image/upload/v1768066790/IMG-20260110-WA0357_rkkqtw.jpg"
   },
   {
     text: "I take full responsibility for not loving you as perfectly as you deserved.",
     color: "bg-emerald-50/70",
     accent: "text-emerald-950",
     glow: "bg-emerald-300/10",
-    img: "https://res.cloudinary.com/dodhvvewu/image/upload/f_auto,q_auto,w_1000/v1767422361/8_ol6enl.webp"
+    img: "https://res.cloudinary.com/dodhvvewu/image/upload/v1768066792/IMG-20250720-WA0022_edn5lq.jpg"
   },
   {
     text: "I am sorry that my imperfections ever became your burden.",
     color: "bg-blue-50/70",
     accent: "text-blue-950",
     glow: "bg-blue-300/10",
-    img: "https://res.cloudinary.com/dodhvvewu/image/upload/f_auto,q_auto,w_1000/v1767422360/3_lp5xfp.webp"
+    img: "https://res.cloudinary.com/dodhvvewu/image/upload/v1768066791/IMG-20260110-WA0364_lbeppo.jpg"
   },
   {
     text: "I cared deeply, and I choose to own my mistakes with honesty.",
     color: "bg-amber-50/70",
     accent: "text-amber-950",
     glow: "bg-amber-300/10",
-    img: "https://res.cloudinary.com/dodhvvewu/image/upload/f_auto,q_auto,w_1000/v1767422360/2_dlkwme.webp"
+    img: "https://res.cloudinary.com/dodhvvewu/image/upload/v1768066792/IMG-20260110-WA0337_oblias.jpg"
   },
   {
     text: "I cannot change the past, but I acknowledge it with total sincerity.",
     color: "bg-violet-50/70",
     accent: "text-violet-950",
     glow: "bg-violet-300/10",
-    img: "https://res.cloudinary.com/dodhvvewu/image/upload/f_auto,q_auto,w_1000/v1767422361/10_yothur.webp"
+    img: "https://res.cloudinary.com/dodhvvewu/image/upload/v1768067827/20260110_164433_pugptc.jpg"
   },
   {
     text: "You deserved warmth and ease, never confusion or pressure.",
     color: "bg-pink-50/70",
     accent: "text-pink-950",
     glow: "bg-pink-300/10",
-    img: "https://res.cloudinary.com/dodhvvewu/image/upload/f_auto,q_auto,w_1000/v1767422361/6_pfgdag.webp"
+    img: "https://res.cloudinary.com/dodhvvewu/image/upload/v1768067814/20260110_164745_fttbom.jpg"
   },
   {
     text: "What I felt was genuine, and I am responsible for how it reached you.",
     color: "bg-teal-50/70",
     accent: "text-teal-950",
     glow: "bg-teal-300/10",
-    img: "https://res.cloudinary.com/dodhvvewu/image/upload/f_auto,q_auto,w_1000/v1767422361/4_fgc19n.webp"
+    img: "https://res.cloudinary.com/dodhvvewu/image/upload/v1768067817/20260110_164548_rxy4fe.jpg"
   },
   {
     text: "This apology exists simply because you are meaningful to me.",
     color: "bg-stone-100/70",
     accent: "text-stone-950",
     glow: "bg-stone-300/10",
-    img: "https://res.cloudinary.com/dodhvvewu/image/upload/f_auto,q_auto,w_1000/v1767422554/11_jcx9rq.webp"
+    img: "https://res.cloudinary.com/dodhvvewu/image/upload/v1768067821/20260110_164530_gl3s93.jpg"
   },
   {
     text: "I value what we shared enough to let this apology stand, quietly.",
     color: "bg-indigo-50/70",
     accent: "text-indigo-950",
     glow: "bg-indigo-300/10",
-    img: "https://res.cloudinary.com/dodhvvewu/image/upload/f_auto,q_auto,w_1000/v1767422555/12_qbz01u.webp"
+    img: "https://res.cloudinary.com/dodhvvewu/image/upload/v1768067845/20260110_164726_llyual.jpg"
   }
 ];
 
