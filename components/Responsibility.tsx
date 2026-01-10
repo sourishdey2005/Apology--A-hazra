@@ -4,7 +4,8 @@ import { motion } from 'framer-motion';
 
 const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
-const PointReveal = ({ text, sub, index }: { text: string; sub: string; index: number }) => (
+// Fixed: Explicitly typed as React.FC to allow reserved props like 'key' when used in .map()
+const PointReveal: React.FC<{ text: string; sub: string; index: number }> = ({ text, sub, index }) => (
   <motion.div 
     initial={{ opacity: 0, y: 40 }}
     whileInView={{ opacity: 1, y: 0 }}
@@ -43,9 +44,18 @@ const PointReveal = ({ text, sub, index }: { text: string; sub: string; index: n
 
 export const Responsibility: React.FC = () => {
   const points = [
-    { text: "If my words were careless, I’m sorry.", sub: "Sometimes language fails our intentions, and I regret every word that felt like a sharp edge." },
-    { text: "If my silence hurt you, I’m sorry.", sub: "The space between us shouldn't have been cold. I apologize for the things I left unsaid." },
-    { text: "If my presence ever felt heavy, I’m sorry.", sub: "I only ever wanted to be your light, not a weight you had to carry through your days." }
+    { 
+      text: "If my words were careless, I’m sorry.", 
+      sub: "Sometimes language fails our intentions, and I regret every word that felt like a sharp edge." 
+    },
+    { 
+      text: "If I didn't hold your heart as carefully as it deserves, I’m sorry.", 
+      sub: "You are my most precious treasure, and I regret every moment I was anything less than the gentle home your soul needs." 
+    },
+    { 
+      text: "If my presence ever felt heavy, I’m sorry.", 
+      sub: "I only ever wanted to be your light, not a weight you had to carry through your days." 
+    }
   ];
 
   return (
