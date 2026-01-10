@@ -30,7 +30,7 @@ export const Hero: React.FC = () => {
       >
         <div 
           className="absolute inset-0 bg-cover bg-center opacity-[0.15] saturate-[0.1]"
-          style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&q=60&f_auto&w=1200")' }}
+          style={{ backgroundImage: 'url("https://res.cloudinary.com/dodhvvewu/image/upload/v1768066790/IMG-20260110-WA0344_kllpxq.jpg")' }}
         />
       </motion.div>
 

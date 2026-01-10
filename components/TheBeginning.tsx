@@ -44,23 +44,23 @@ export const TheBeginning: React.FC = () => {
             transition={{ duration: 2, ease: "easeOut" }}
             className="text-[10px] uppercase text-stone-500 font-bold"
           >
-            A Year Turned in Silence
+            The Weight of the New Year
           </motion.h4>
         </div>
 
         <div className="space-y-20 text-center">
           <StoryParagraph 
-            text="I still carry the weight of the silence that grew between us. I find myself wondering where the conversation stopped, and if my mistakes were the reason you felt you had to turn away. The distance feels heavy, and every day without your voice feels like a page left blank." 
+            text="The silence between us has its own weight. I find myself tracing back through our messages, wondering at which point the laughter turned to quiet, and if my mistakes were the walls you had to build. Every day without your voice feels like a winter that won't end." 
             delay={0.2}
           />
 
           <StoryParagraph 
-            text="Even as the year turned and the world celebrated, I found myself waiting—still looking for your name on my screen, still hoping for that 'Congratulations' and the simple 'Happy New Year' that never arrived. It made me realize how much I miss the rhythm of our talk, and how much it hurts to be a stranger to you now."
+            text="When the clock struck midnight and the fireworks began, I found myself instinctively reaching for my phone—looking for your name, waiting for a 'Congratulations' or just a simple 'Happy New Year' that never came. It made the distance feel real, and the silence feel absolute."
             delay={0.8}
           />
 
           <StoryParagraph 
-            text="I’m truly sorry for whatever caused you to stop talking. I’m still here, holding onto the memory of when we first met at Laal Quila, and waiting for the chance to hear your voice again, whenever you feel ready to speak."
+            text="I’m not just sorry for what I did; I’m sorry for the stranger I’ve become to you. I’m still here, holding the memory of Laal Quila close, and I’ll be waiting in this quiet until the day you feel ready to let the words back in."
             delay={1.4}
           />
         </div>
