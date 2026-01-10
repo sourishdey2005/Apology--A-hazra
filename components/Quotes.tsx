@@ -7,17 +7,17 @@ const quotes = [
   {
     text: "Some apologies are not about fixing things, but about honoring what was real.",
     icon: <Heart className="w-8 h-8 text-rose-500" />,
-    img: "https://images.unsplash.com/photo-1559734840-f9509ee5677f?auto=format&fit=crop&q=80&w=1200"
+    img: "https://res.cloudinary.com/dodhvvewu/image/upload/v1768066790/IMG-20260110-WA0344_kllpxq.jpg"
   },
   {
     text: "Love sometimes means letting silence speak, and regret speak gently.",
     icon: <Moon className="w-8 h-8 text-indigo-500" />,
-    img: "https://images.unsplash.com/photo-1550431327-0f8c7e93f773?auto=format&fit=crop&q=80&w=1200"
+    img: "https://res.cloudinary.com/dodhvvewu/image/upload/v1768066792/IMG-20250720-WA0022_edn5lq.jpg"
   },
   {
     text: "I don’t need answers — I just needed you to know I cared.",
     icon: <Sparkles className="w-8 h-8 text-amber-500" />,
-    img: "https://images.unsplash.com/photo-1446071103245-02c807d49994?auto=format&fit=crop&q=80&w=1200"
+    img: "https://res.cloudinary.com/dodhvvewu/image/upload/v1768066790/IMG-20260110-WA0354_jzprhl.jpg"
   }
 ];
 
