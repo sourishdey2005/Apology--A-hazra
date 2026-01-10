@@ -27,13 +27,12 @@ export const Quotes: React.FC = () => {
   useEffect(() => {
     const timer = setInterval(() => {
       setIndex((prev) => (prev + 1) % quotes.length);
-    }, 10000); // Slightly longer to allow for typewriter completion
+    }, 10000);
     return () => clearInterval(timer);
   }, []);
 
   return (
     <section className="relative py-72 bg-[#FAF9F6] overflow-hidden">
-      {/* Dynamic Background Image - Cinematic Roses */}
       <AnimatePresence mode="wait">
         <motion.div
           key={`bg-${index}`}
@@ -59,8 +58,7 @@ export const Quotes: React.FC = () => {
             >
               <motion.div 
                 animate={{ 
-                  scale: [1, 1.2, 1],
-                  filter: ["blur(0px)", "blur(2px)", "blur(0px)"]
+                  scale: [1, 1.1, 1],
                 }}
                 transition={{ duration: 5, repeat: Infinity }}
                 className="p-6 rounded-full bg-white/80 backdrop-blur-md shadow-lg"
@@ -85,7 +83,6 @@ export const Quotes: React.FC = () => {
           </AnimatePresence>
         </div>
 
-        {/* Improved Nav UI */}
         <div className="flex justify-center mt-32 space-x-6">
           {quotes.map((_, i) => (
             <button
@@ -94,13 +91,10 @@ export const Quotes: React.FC = () => {
               className="group relative py-6 px-2 focus:outline-none"
             >
               <div
-                className={`w-16 h-[3px] rounded-full transition-all duration-1000 ${
-                  i === index ? "bg-rose-400" : "bg-stone-200"
+                className={`w-12 h-1 rounded-full transition-all duration-700 ${
+                  i === index ? "bg-rose-400 w-16" : "bg-stone-200"
                 }`}
               />
-              <span className={`absolute top-10 left-1/2 -translate-x-1/2 text-[10px] font-bold tracking-[0.5em] transition-opacity duration-500 uppercase ${i === index ? 'opacity-100 text-rose-500' : 'opacity-0'}`}>
-                Letter {i+1}
-              </span>
             </button>
           ))}
         </div>
