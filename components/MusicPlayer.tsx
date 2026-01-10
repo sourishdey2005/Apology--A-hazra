@@ -23,7 +23,7 @@ export const MusicPlayer: React.FC = () => {
       <audio
         ref={audioRef}
         loop
-        src="https://res.cloudinary.com/dodhvvewu/video/upload/v1767422914/spotidownloader.com_-_Tumhi_Dekho_Naa_-_Sitar_Lofi_-_Rishab_Rikhiram_Sharma_ork1g8.mp3" // Soft ambient piano
+        src="https://res.cloudinary.com/dodhvvewu/video/upload/v1768069492/Pehli_Dafa_Atif_Aslam_128_Kbps_ur2j39.mp3" // Soft ambient piano
       />
       <motion.button
         onClick={toggleMusic}
