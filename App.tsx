@@ -1,6 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { TopVisual } from './components/TopVisual';
 import { Hero } from './components/Hero';
 import { Acknowledgment } from './components/Acknowledgment';
 import { Responsibility } from './components/Responsibility';
@@ -56,6 +57,7 @@ function App() {
         animate={{ opacity: isLoaded ? 1 : 0 }}
         transition={{ duration: 2.5, ease: [0.22, 1, 0.36, 1] }}
       >
+        <TopVisual />
         <Hero />
         <Acknowledgment />
         <Responsibility />

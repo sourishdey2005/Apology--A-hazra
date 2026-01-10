@@ -44,23 +44,23 @@ export const TheBeginning: React.FC = () => {
             transition={{ duration: 2, ease: "easeOut" }}
             className="text-[10px] uppercase text-stone-500 font-bold"
           >
-            A memory of April
+            The weight of silence
           </motion.h4>
         </div>
 
         <div className="space-y-20 text-center">
           <StoryParagraph 
-            text="I still remember that April breeze. Before then, the year was just another cycle of seasons — days passing without meaning, moments blending into one another. But meeting you changed the very rhythm of my life. Suddenly, every morning felt softer, every night felt warmer, and every second carried a sense of anticipation." 
+            text="I still carry the weight of the silence that grew between us. I find myself wondering where the conversation stopped, and if my actions were the reason you felt you had to turn away. The distance feels heavy, and every day without your voice feels like a page left blank." 
             delay={0.4}
           />
 
           <StoryParagraph 
-            text="It was at Laal Quila, where we met for the very first time — standing beneath centuries of history, unaware that we were creating our own. In that moment, among the quiet echoes of the past and the soft chaos of the present, I felt it — the first undeniable spark of love. From that instant onward, something inside me chose you, silently and completely."
+            text="Even as the year turned and the world celebrated, I found myself waiting—still looking for your name, still hoping for that 'Congratulations' and the simple 'Happy New Year' that never arrived. It made me realize how much I miss the rhythm of our talk, and how much I regret whatever caused this sudden quiet."
             delay={1.2}
           />
 
           <StoryParagraph 
-            text="From that day forward, every conversation became a promise, every smile became a memory, and every shared silence felt meaningful. Time stopped being something I counted — it became something I felt, measured only by moments with you. April didn’t just mark a month on the calendar; it marked the beginning of us — a story I want to keep writing, slowly, sincerely, and endlessly."
+            text="I’m not just sorry for the mistakes I made; I’m sorry for the silence they created. I’m still here, holding onto the memory of when we first met at Laal Quila, and waiting for the chance to hear your voice again, whenever you are ready."
             delay={2}
           />
         </div>
