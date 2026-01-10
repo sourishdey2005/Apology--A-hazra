@@ -27,7 +27,7 @@ export const TheBeginning: React.FC = () => {
     <section ref={containerRef} className="relative min-h-screen py-40 md:py-64 bg-[#FDFBF7] flex items-center justify-center px-6 overflow-hidden">
       <motion.div 
         style={{ y: imgY }}
-        className="absolute inset-0 z-0 pointer-events-none"
+        className="absolute inset-0 z-0 pointer-events-none will-change-transform"
       >
         <div 
           className="absolute inset-0 bg-cover bg-center grayscale opacity-[0.05]"
@@ -44,24 +44,24 @@ export const TheBeginning: React.FC = () => {
             transition={{ duration: 2, ease: "easeOut" }}
             className="text-[10px] uppercase text-stone-500 font-bold"
           >
-            The weight of silence
+            A Year Turned in Silence
           </motion.h4>
         </div>
 
         <div className="space-y-20 text-center">
           <StoryParagraph 
-            text="I still carry the weight of the silence that grew between us. I find myself wondering where the conversation stopped, and if my actions were the reason you felt you had to turn away. The distance feels heavy, and every day without your voice feels like a page left blank." 
-            delay={0.4}
+            text="I still carry the weight of the silence that grew between us. I find myself wondering where the conversation stopped, and if my mistakes were the reason you felt you had to turn away. The distance feels heavy, and every day without your voice feels like a page left blank." 
+            delay={0.2}
           />
 
           <StoryParagraph 
-            text="Even as the year turned and the world celebrated, I found myself waiting—still looking for your name, still hoping for that 'Congratulations' and the simple 'Happy New Year' that never arrived. It made me realize how much I miss the rhythm of our talk, and how much I regret whatever caused this sudden quiet."
-            delay={1.2}
+            text="Even as the year turned and the world celebrated, I found myself waiting—still looking for your name on my screen, still hoping for that 'Congratulations' and the simple 'Happy New Year' that never arrived. It made me realize how much I miss the rhythm of our talk, and how much it hurts to be a stranger to you now."
+            delay={0.8}
           />
 
           <StoryParagraph 
-            text="I’m not just sorry for the mistakes I made; I’m sorry for the silence they created. I’m still here, holding onto the memory of when we first met at Laal Quila, and waiting for the chance to hear your voice again, whenever you are ready."
-            delay={2}
+            text="I’m truly sorry for whatever caused you to stop talking. I’m still here, holding onto the memory of when we first met at Laal Quila, and waiting for the chance to hear your voice again, whenever you feel ready to speak."
+            delay={1.4}
           />
         </div>
       </div>
