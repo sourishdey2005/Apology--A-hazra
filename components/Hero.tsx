@@ -25,16 +25,16 @@ export const Hero: React.FC = () => {
   return (
     <section className="relative h-screen flex flex-col items-center justify-center overflow-hidden bg-[#FAF9F6]">
       <motion.div 
-        className="absolute inset-0 z-0 origin-center"
+        className="absolute inset-0 z-0 origin-center will-change-transform"
         style={{ y: yBg }}
       >
         <div 
           className="absolute inset-0 bg-cover bg-center opacity-[0.15] saturate-[0.1]"
-          style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&q=auto&f_auto&w=1600")' }}
+          style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&q=60&f_auto&w=1200")' }}
         />
       </motion.div>
 
-      <motion.div style={{ opacity }} className="relative z-10 text-center px-6 w-full max-w-5xl">
+      <motion.div style={{ opacity }} className="relative z-10 text-center px-6 w-full max-w-5xl will-change-opacity">
         <motion.h1 
           className="text-7xl md:text-[11rem] font-serif text-[#1a1a1a] mb-12 italic font-light tracking-[-0.04em] flex justify-center flex-wrap gap-x-2"
           initial="hidden"
