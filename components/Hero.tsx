@@ -6,19 +6,22 @@ const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
 export const Hero: React.FC = () => {
   const sentence = "I’m Sorry";
-  const subtext = "For whatever I did wrong — knowingly or unknowingly.";
+  const subtext = "For every moment I failed to be the home you deserved.";
   const { scrollY } = useScroll();
   
-  const yBg = useTransform(scrollY, [0, 1000], [0, 200]);
-  const opacity = useTransform(scrollY, [0, 600], [1, 0]);
+  // Adjusted transforms to make the text "stay" and feel more grounded
+  const yBg = useTransform(scrollY, [0, 1000], [0, 150]);
+  // Fades out much more slowly now, and only to 0.1 instead of 0 to keep it "there"
+  const opacity = useTransform(scrollY, [0, 800], [1, 0.1]);
+  const scale = useTransform(scrollY, [0, 800], [1, 0.95]);
 
   const letterVariants = {
-    hidden: { opacity: 0, y: 20, filter: 'blur(10px)' },
+    hidden: { opacity: 0, y: 30, filter: 'blur(12px)' },
     visible: { 
       opacity: 1, 
       y: 0, 
       filter: 'blur(0px)',
-      transition: { duration: 1.8, ease: EASE }
+      transition: { duration: 2.2, ease: EASE }
     },
   };
 
@@ -29,24 +32,29 @@ export const Hero: React.FC = () => {
         style={{ y: yBg }}
       >
         <div 
-          className="absolute inset-0 bg-cover bg-center opacity-[0.15] saturate-[0.1]"
+          className="absolute inset-0 bg-cover bg-center opacity-[0.2] saturate-[0.2] contrast-[0.9]"
           style={{ backgroundImage: 'url("https://res.cloudinary.com/dodhvvewu/image/upload/v1768066790/IMG-20260110-WA0344_kllpxq.jpg")' }}
         />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#FAF9F6]/20 to-[#FAF9F6]" />
       </motion.div>
 
-      <motion.div style={{ opacity }} className="relative z-10 text-center px-6 w-full max-w-5xl will-change-opacity">
+      <motion.div 
+        style={{ opacity, scale }} 
+        className="relative z-10 text-center px-6 w-full max-w-7xl will-change-transform"
+      >
         <motion.h1 
-          className="text-7xl md:text-[11rem] font-serif text-[#1a1a1a] mb-12 italic font-light tracking-[-0.04em] flex justify-center flex-wrap gap-x-2"
+          className="text-7xl md:text-[12rem] font-serif text-[#1a1a1a] mb-12 italic font-light tracking-[-0.05em] flex justify-center flex-wrap gap-x-1 md:gap-x-4"
           initial="hidden"
           animate="visible"
           variants={{
-            visible: { transition: { staggerChildren: 0.08 } }
+            visible: { transition: { staggerChildren: 0.12 } }
           }}
         >
           {sentence.split("").map((char, index) => (
             <motion.span
               key={index}
               variants={letterVariants}
+              className="inline-block"
             >
               {char === " " ? "\u00A0" : char}
             </motion.span>
@@ -54,28 +62,31 @@ export const Hero: React.FC = () => {
         </motion.h1>
 
         <motion.div
-          initial={{ opacity: 0, y: 15 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.5, delay: 1.2, ease: EASE }}
-          className="space-y-10"
+          transition={{ duration: 2, delay: 1.5, ease: EASE }}
+          className="space-y-12"
         >
-          <p className="text-sm md:text-lg text-stone-400 font-light tracking-[0.3em] max-w-2xl mx-auto leading-relaxed text-center uppercase">
-            {subtext}
-          </p>
-          <div className="w-10 h-[1px] bg-rose-200/40 mx-auto" />
+          <div className="flex flex-col items-center gap-6">
+            <div className="w-12 h-[1px] bg-rose-300/60" />
+            <p className="text-sm md:text-xl text-stone-500 font-light tracking-[0.4em] max-w-3xl mx-auto leading-relaxed text-center uppercase">
+              {subtext}
+            </p>
+          </div>
         </motion.div>
       </motion.div>
 
+      {/* Aesthetic bottom indicator */}
       <motion.div 
         className="absolute bottom-16 left-1/2 -translate-x-1/2 flex flex-col items-center gap-6"
         initial={{ opacity: 0 }}
-        animate={{ opacity: 0.3 }}
-        transition={{ delay: 2.5, duration: 2 }}
+        animate={{ opacity: 0.2 }}
+        transition={{ delay: 3, duration: 2 }}
       >
         <motion.div 
-          className="w-[1px] h-12 bg-gradient-to-b from-rose-200 to-transparent"
-          animate={{ height: [12, 24, 12] }}
-          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+          className="w-[1px] h-16 bg-gradient-to-b from-stone-400 to-transparent"
+          animate={{ height: [16, 32, 16], opacity: [0.2, 0.5, 0.2] }}
+          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
         />
       </motion.div>
     </section>

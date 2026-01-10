@@ -18,38 +18,38 @@ const LoveQuote = ({ text, delay }: { text: string; delay: number }) => (
 
 export const HeartfeltLove: React.FC = () => {
   return (
-    <section className="relative min-h-[70vh] bg-[#0C0D18] flex flex-col items-center justify-center px-6 py-32 overflow-hidden border-t border-white/[0.02]">
+    <section className="relative min-h-[80vh] bg-[#0C0D18] flex flex-col items-center justify-center px-6 py-32 overflow-hidden border-t border-white/[0.02]">
       {/* Soft Rose Nebula Glow */}
       <motion.div 
         animate={{ 
-          scale: [1, 1.2, 1],
-          opacity: [0.1, 0.2, 0.1]
+          scale: [1, 1.3, 1],
+          opacity: [0.1, 0.25, 0.1]
         }}
-        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-rose-500/10 rounded-full blur-[120px] pointer-events-none"
+        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-rose-500/10 rounded-full blur-[140px] pointer-events-none"
       />
 
-      <div className="max-w-4xl w-full text-center space-y-12 relative z-10">
+      <div className="max-w-5xl w-full text-center space-y-12 relative z-10">
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 0.3 }}
           viewport={{ once: true }}
           transition={{ duration: 2 }}
-          className="w-px h-24 bg-gradient-to-b from-rose-300/0 via-rose-300/50 to-rose-300/0 mx-auto mb-16"
+          className="w-px h-32 bg-gradient-to-b from-rose-300/0 via-rose-300/50 to-rose-300/0 mx-auto mb-20"
         />
 
         <LoveQuote 
-          text="I love you. More than the words I can find, and more than the silence I've kept." 
+          text="I love you. In the spaces between my thoughts and the rhythm of my heart." 
           delay={0.5} 
         />
         
         <LoveQuote 
-          text="I love you. In the quiet, in the regret, and in every hope I have for you." 
+          text="I love you. Enough to own my shadows and stay until your light returns." 
           delay={2.5} 
         />
         
         <LoveQuote 
-          text="I love you a lot. Forever, quietly, and with all my heart." 
+          text="I love you more than the quiet. Forever, with every part of who I am." 
           delay={4.5} 
         />
 
@@ -58,12 +58,24 @@ export const HeartfeltLove: React.FC = () => {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 3, delay: 6.5 }}
-          className="pt-12"
+          className="pt-16"
         >
-          <div className="flex justify-center items-center gap-4">
-            <div className="w-8 h-[1px] bg-rose-300/20" />
-            <span className="text-rose-300/40 text-[10px] uppercase tracking-[1em] font-medium">Always</span>
-            <div className="w-8 h-[1px] bg-rose-300/20" />
+          <div className="flex flex-col items-center gap-8">
+            <div className="flex justify-center items-center gap-6">
+              <div className="w-12 h-[1px] bg-rose-300/10" />
+              <span className="text-rose-200/30 text-[10px] uppercase tracking-[1.2em] font-medium italic">Always your harbor</span>
+              <div className="w-12 h-[1px] bg-rose-300/10" />
+            </div>
+            <motion.div 
+              initial={{ scale: 0.8, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 0.4 }}
+              transition={{ delay: 7.5, duration: 2 }}
+              className="text-rose-200/20"
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+              </svg>
+            </motion.div>
           </div>
         </motion.div>
       </div>

@@ -7,12 +7,50 @@ export const MusicPlayer: React.FC = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
+  useEffect(() => {
+    const attemptPlay = async () => {
+      if (audioRef.current) {
+        try {
+          // Attempt to play immediately
+          await audioRef.current.play();
+          setIsPlaying(true);
+        } catch (err) {
+          // If blocked, we wait for the first user interaction
+          console.log("Autoplay blocked. Waiting for user interaction to start music.");
+        }
+      }
+    };
+
+    // Try on mount
+    attemptPlay();
+
+    // Fallback: play on first click or touch anywhere on the document
+    const handleFirstInteraction = () => {
+      if (!isPlaying) {
+        attemptPlay();
+      }
+      window.removeEventListener('click', handleFirstInteraction);
+      window.removeEventListener('touchstart', handleFirstInteraction);
+      window.removeEventListener('scroll', handleFirstInteraction);
+    };
+
+    window.addEventListener('click', handleFirstInteraction);
+    window.addEventListener('touchstart', handleFirstInteraction);
+    window.addEventListener('scroll', handleFirstInteraction, { passive: true });
+
+    return () => {
+      window.removeEventListener('click', handleFirstInteraction);
+      window.removeEventListener('touchstart', handleFirstInteraction);
+      window.removeEventListener('scroll', handleFirstInteraction);
+    };
+  }, [isPlaying]);
+
   const toggleMusic = () => {
     if (audioRef.current) {
       if (isPlaying) {
         audioRef.current.pause();
       } else {
-        audioRef.current.play();
+        audioRef.current.play().catch(console.error);
       }
       setIsPlaying(!isPlaying);
     }
@@ -23,13 +61,15 @@ export const MusicPlayer: React.FC = () => {
       <audio
         ref={audioRef}
         loop
-        src="https://res.cloudinary.com/dodhvvewu/video/upload/v1768069492/Pehli_Dafa_Atif_Aslam_128_Kbps_ur2j39.mp3" // Soft ambient piano
+        playsInline
+        src="https://res.cloudinary.com/dodhvvewu/video/upload/v1768069492/Pehli_Dafa_Atif_Aslam_128_Kbps_ur2j39.mp3"
       />
       <motion.button
         onClick={toggleMusic}
         className="relative flex items-center justify-center w-12 h-12 rounded-full bg-white/20 backdrop-blur-xl border border-white/40 shadow-xl group overflow-hidden"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
+        aria-label={isPlaying ? "Mute Music" : "Play Music"}
       >
         <AnimatePresence mode="wait">
           {isPlaying ? (
@@ -67,7 +107,7 @@ export const MusicPlayer: React.FC = () => {
         initial={{ x: 10 }}
         whileHover={{ x: 0 }}
       >
-        Ambient Silence
+        {isPlaying ? "Pehli Dafa - Atif Aslam" : "Ambient Silence"}
       </motion.span>
     </div>
   );
